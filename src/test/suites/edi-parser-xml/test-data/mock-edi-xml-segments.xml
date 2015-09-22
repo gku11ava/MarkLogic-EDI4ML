@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<segments xmlns:ex="http://marklogic.com/edi/xml#">
+	<sample test="xml-to-string" case-id="1">
+		<ex:field ex:index="1">12345!HelloWorld</ex:field>
+	</sample>
+	<sample test="xml-to-string" case-id="2">
+		<ex:field ex:index="1">
+            <ex:components ex:count="4">
+                <ex:component ex:index="1">12345!HelloWorld</ex:component>
+                <ex:component ex:index="2"/>
+                <ex:component ex:index="3">Component2</ex:component>
+                <ex:component ex:index="4">Component3</ex:component>
+            </ex:components>
+        </ex:field>
+	</sample>
+	<sample test="xml-to-string" case-id="3">
+		<ex:field ex:index="3">
+		    <ex:components ex:count="4">
+        	    <ex:component ex:index="1">12345!HelloWorld</ex:component>
+            	<ex:component ex:index="2"/>
+                <ex:component ex:index="3">
+                	<ex:sub-components ex:count="3">
+                		<ex:sub-component ex:index="1">SubComponent2-1</ex:sub-component>
+                		<ex:sub-component ex:index="2"/>
+                		<ex:sub-component ex:index="3">SubComponent2-3</ex:sub-component>
+                	</ex:sub-components>
+                </ex:component>
+                <ex:component ex:index="4">Component3</ex:component>
+            </ex:components>
+        </ex:field>
+	</sample>
+	<sample test="xml-to-segment" case-id="1">
+	    <description>Tests conversion of a segment XML snippet without the set-position attribute</description>
+		<ex:segment ex:index="2">
+			<ex:segment-identifier>TEST1</ex:segment-identifier>
+			<ex:fields ex:count="4">
+				<ex:field ex:index="1">12345!HelloWorld</ex:field>
+				<ex:field ex:index="2">
+            		<ex:components ex:count="4">
+                		<ex:component ex:index="1">12345!HelloWorld</ex:component>
+                		<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">Component2</ex:component>
+                		<ex:component ex:index="4">Component3</ex:component>
+            		</ex:components>
+        		</ex:field>
+				<ex:field ex:index="3">
+		            <ex:components ex:count="4">
+        	    	    <ex:component ex:index="1">12345!HelloWorld</ex:component>
+            	    	<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">
+                		    <ex:sub-components ex:count="3">
+                		    	<ex:sub-component ex:index="1">SubComponent2-1</ex:sub-component>
+                		    	<ex:sub-component ex:index="2"/>
+                		    	<ex:sub-component ex:index="3">SubComponent2-3</ex:sub-component>
+                		    </ex:sub-components>
+                		</ex:component>
+                		<ex:component ex:index="4">Component3</ex:component>
+            		</ex:components>
+        		</ex:field>
+        		<ex:field ex:index="4"></ex:field>
+        	</ex:fields>
+		</ex:segment>
+	</sample>
+	<sample test="xml-to-segment" case-id="2">
+		<description>Tests conversion of a segment XML snippet with the set-position attribute</description>
+		<ex:segment ex:index="2" ex:set-position="1">
+			<ex:segment-identifier>TEST1</ex:segment-identifier>
+			<ex:fields ex:count="4">
+				<ex:field ex:index="1">12345!HelloWorld</ex:field>
+				<ex:field ex:index="2">
+            		<ex:components ex:count="4">
+                		<ex:component ex:index="1">12345!HelloWorld</ex:component>
+                		<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">Component2</ex:component>
+                		<ex:component ex:index="4">Component3</ex:component>
+            		</ex:components>
+        		</ex:field>
+				<ex:field ex:index="3">
+		            <ex:components ex:count="4">
+        	    	    <ex:component ex:index="1">12345!HelloWorld</ex:component>
+            	    	<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">
+                		    <ex:sub-components ex:count="3">
+                		    	<ex:sub-component ex:index="1">SubComponent2-1</ex:sub-component>
+                		    	<ex:sub-component ex:index="2"/>
+                		    	<ex:sub-component ex:index="3">SubComponent2-3</ex:sub-component>
+                		    </ex:sub-components>
+                		</ex:component>
+                		<ex:component ex:index="4">Component3</ex:component>
+            		</ex:components>
+        		</ex:field>
+        		<ex:field ex:index="4"></ex:field>
+        	</ex:fields>
+		</ex:segment>
+	</sample>
+</segments>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ex:edi-document xmlns:ex="http://marklogic.com/edi/xml#">
+	<ex:delimiters>
+		<ex:delimiter ex:type="field">*</ex:delimiter>
+		<ex:delimiter ex:type="segment">~</ex:delimiter>
+		<ex:delimiter ex:type="component">:</ex:delimiter>
+	</ex:delimiters>
+	<ex:segments ex:count="10">
+		<ex:segment ex:index="1">
+			<ex:segment-identifier>ISA</ex:segment-identifier>
+			<ex:fields ex:count="16">
+				<ex:field ex:index="1">00</ex:field>
+				<ex:field ex:index="2"> </ex:field>
+				<ex:field ex:index="3">00</ex:field>
+				<ex:field ex:index="4"> </ex:field>
+				<ex:field ex:index="5">ZZ</ex:field>
+				<ex:field ex:index="6">445498161 </ex:field>
+				<ex:field ex:index="7">ZZ</ex:field>
+				<ex:field ex:index="8">100000013</ex:field>
+				<ex:field ex:index="9">110113</ex:field>
+				<ex:field ex:index="10">1335</ex:field>
+				<ex:field ex:index="11">^</ex:field>
+				<ex:field ex:index="12">00501</ex:field>
+				<ex:field ex:index="13">000000006</ex:field>
+				<ex:field ex:index="14">0</ex:field>
+				<ex:field ex:index="15">P</ex:field>
+				<ex:field ex:index="16">:</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="2">
+			<ex:segment-identifier>GS</ex:segment-identifier>
+			<ex:fields ex:count="8">
+				<ex:field ex:index="1">FA</ex:field>
+				<ex:field ex:index="2">445498161</ex:field>
+				<ex:field ex:index="3">100000013</ex:field>
+				<ex:field ex:index="4">20110113</ex:field>
+				<ex:field ex:index="5">13350701</ex:field>
+				<ex:field ex:index="6">6</ex:field>
+				<ex:field ex:index="7">X</ex:field>
+				<ex:field ex:index="8">005010X231</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="3">
+			<ex:segment-identifier>ST</ex:segment-identifier>
+			<ex:fields ex:count="3">
+				<ex:field ex:index="1">999</ex:field>
+				<ex:field ex:index="2">6001</ex:field>
+				<ex:field ex:index="3">005010X231</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="4">
+			<ex:segment-identifier>AK1</ex:segment-identifier>
+			<ex:fields ex:count="3">
+				<ex:field ex:index="1">HC</ex:field>
+				<ex:field ex:index="2">69</ex:field>
+				<ex:field ex:index="3">005010X222A1</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="5">
+			<ex:segment-identifier>AK2</ex:segment-identifier>
+			<ex:fields ex:count="3">
+				<ex:field ex:index="1">837</ex:field>
+				<ex:field ex:index="2">000000001</ex:field>
+				<ex:field ex:index="3">005010X222A1</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="6">
+			<ex:segment-identifier>IK5</ex:segment-identifier>
+			<ex:fields ex:count="1">
+				<ex:field ex:index="1">A</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="7">
+			<ex:segment-identifier>AK9</ex:segment-identifier>
+			<ex:fields ex:count="4">
+				<ex:field ex:index="1">A</ex:field>
+				<ex:field ex:index="2">1</ex:field>
+				<ex:field ex:index="3">1</ex:field>
+				<ex:field ex:index="4">1</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="8">
+			<ex:segment-identifier>SE</ex:segment-identifier>
+			<ex:fields ex:count="2">
+				<ex:field ex:index="1">6</ex:field>
+				<ex:field ex:index="2">6001</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="9">
+			<ex:segment-identifier>GE</ex:segment-identifier>
+			<ex:fields ex:count="2">
+				<ex:field ex:index="1">1</ex:field>
+				<ex:field ex:index="2">6</ex:field>
+			</ex:fields>
+		</ex:segment>
+		<ex:segment ex:index="10">
+			<ex:segment-identifier>IEA</ex:segment-identifier>
+			<ex:fields ex:count="2">
+				<ex:field ex:index="1">1</ex:field>
+				<ex:field ex:index="2">000000006</ex:field>
+			</ex:fields>
+		</ex:segment>
+	</ex:segments>
+</ex:edi-document>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test-results xmlns:ex="http://marklogic.com/edi/xml#">
+	<result>
+		<test>string-to-xml</test>
+		<case-id>1</case-id>
+		<case-id>4</case-id>
+		<case-id>7</case-id>
+		<ex:field ex:index="1">12345!HelloWorld</ex:field>
+	</result>
+	<result>
+		<test>string-to-xml</test>
+		<case-id>2</case-id>
+		<case-id>8</case-id>
+		<ex:field ex:index="1">
+            <ex:components ex:count="4">
+            	<ex:component ex:index="1">12345!HelloWorld</ex:component>
+                <ex:component ex:index="2"/>
+                <ex:component ex:index="3">Component2</ex:component>
+                <ex:component ex:index="4">Component3</ex:component>
+            </ex:components>
+        </ex:field>
+	</result>
+	<result>
+		<test>string-to-xml</test>
+		<case-id>3</case-id>
+		<ex:field ex:index="1">
+            <ex:components ex:count="4">
+                <ex:component ex:index="1">12345!HelloWorld</ex:component>
+                <ex:component ex:index="2"/>
+                <ex:component ex:index="3">SubComponent2-1;;SubComponent2-3</ex:component>
+                <ex:component ex:index="4">Component3</ex:component>
+            </ex:components>
+        </ex:field>
+	</result>
+	<result>
+		<test>string-to-xml</test>
+		<case-id>5</case-id>
+		<ex:field ex:index="1">12345!HelloWorld::Component2:Component3</ex:field>
+	</result>
+	<result>
+		<test>string-to-xml</test>
+		<case-id>6</case-id>
+		<ex:field ex:index="1">12345!HelloWorld::SubComponent2-1;;SubComponent2-3:Component3</ex:field>
+	</result>
+	<result>
+		<test>string-to-xml</test>
+		<case-id>9</case-id>
+		<ex:field ex:index="1">
+            <ex:components ex:count="4">
+                <ex:component ex:index="1">12345!HelloWorld</ex:component>
+                <ex:component ex:index="2"/>
+                <ex:component ex:index="3">
+                    <ex:sub-components ex:count="3">
+                        <ex:sub-component ex:index="1">SubComponent2-1</ex:sub-component>
+                        <ex:sub-component ex:index="2"/>
+                        <ex:sub-component ex:index="3">SubComponent2-3</ex:sub-component>
+                    </ex:sub-components>
+                </ex:component>
+                <ex:component ex:index="4">Component3</ex:component>
+            </ex:components>
+        </ex:field>
+	</result>
+	<result>
+		<test>segment-to-xml</test>
+		<case-id>1</case-id>
+		<ex:segment ex:index="2">
+			<ex:segment-identifier>TEST1</ex:segment-identifier>
+			<ex:fields ex:count="4">
+				<ex:field ex:index="1">12345!HelloWorld</ex:field>
+				<ex:field ex:index="2">
+            		<ex:components ex:count="4">
+                		<ex:component ex:index="1">12345!HelloWorld</ex:component>
+                		<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">Component2</ex:component>
+                		<ex:component ex:index="4">Component3</ex:component>
+            		</ex:components>
+        		</ex:field>
+				<ex:field ex:index="3">
+		            <ex:components ex:count="4">
+        	    	    <ex:component ex:index="1">12345!HelloWorld</ex:component>
+            	    	<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">
+                		    <ex:sub-components ex:count="3">
+                		    	<ex:sub-component ex:index="1">SubComponent2-1</ex:sub-component>
+                		    	<ex:sub-component ex:index="2"/>
+                		    	<ex:sub-component ex:index="3">SubComponent2-3</ex:sub-component>
+                		    </ex:sub-components>
+                		</ex:component>
+            		</ex:components>
+        		</ex:field>
+        		<ex:field ex:index="4"/>
+        	</ex:fields>
+		</ex:segment> 
+	</result>
+	<result>
+		<test>segment-to-xml</test>
+		<case-id>2</case-id>
+		<ex:segment ex:index="2" ex:set-position="1">
+			<ex:segment-identifier>TEST1</ex:segment-identifier>
+			<ex:fields ex:count="4">
+				<ex:field ex:index="1">12345!HelloWorld</ex:field>
+				<ex:field ex:index="2">
+            		<ex:components ex:count="4">
+                		<ex:component ex:index="1">12345!HelloWorld</ex:component>
+                		<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">Component2</ex:component>
+                		<ex:component ex:index="4">Component3</ex:component>
+            		</ex:components>
+        		</ex:field>
+				<ex:field ex:index="3">
+		            <ex:components ex:count="4">
+        	    	    <ex:component ex:index="1">12345!HelloWorld</ex:component>
+            	    	<ex:component ex:index="2"/>
+                		<ex:component ex:index="3">
+                		    <ex:sub-components ex:count="3">
+                		    	<ex:sub-component ex:index="1">SubComponent2-1</ex:sub-component>
+                		    	<ex:sub-component ex:index="2"/>
+                		    	<ex:sub-component ex:index="3">SubComponent2-3</ex:sub-component>
+                		    </ex:sub-components>
+                		</ex:component>
+            		</ex:components>
+        		</ex:field>
+        		<ex:field ex:index="4"/>
+        	</ex:fields>
+		</ex:segment>
+	</result>
+	<result>
+		<test>xml-to-string</test>
+		<case-id>1</case-id>
+		<string>12345!HelloWorld</string>
+	</result>
+	<result>
+		<test>xml-to-string</test>
+		<case-id>2</case-id>
+		<string>12345!HelloWorld::Component2:Component3</string>
+	</result>
+	<result>
+		<test>xml-to-string</test>
+		<case-id>3</case-id>
+		<string>12345!HelloWorld::SubComponent2-1;;SubComponent2-3:Component3</string>
+	</result>
+	<result>
+	    <description>Correctly parsing an interchange footer.</description>
+		<test>check-footer</test>
+		<case-id>1</case-id>
+		<warning-count>0</warning-count>
+		<next-index>11</next-index>
+		<footer-text>IEA*1*000000006</footer-text>
+	</result>
+	<result>
+	    <description>Correctly parsing a functional group footer.</description>
+		<test>check-footer</test>
+		<case-id>2</case-id>
+		<warning-count>0</warning-count>
+		<next-index>10</next-index>
+		<footer-text>GE*1*6</footer-text>
+	</result>
+	<result>
+	    <description>Correctly parsing a transaction set footer.</description>
+		<test>check-footer</test>
+		<case-id>3</case-id>
+		<warning-count>0</warning-count>
+		<next-index>9</next-index>
+		<footer-text>SE*6*6001</footer-text>
+	</result>
+	<result>
+	    <description>Handling a child count mismatch for a transaction set.</description>
+		<test>check-footer</test>
+		<case-id>4</case-id>
+		<warning-count>1</warning-count>
+		<next-index>9</next-index>
+		<footer-text>SE*6*6001</footer-text>
+	</result>
+	<result>
+	    <description>Handling a control number mismatch for a transaction set.</description>
+		<test>check-footer</test>
+		<case-id>5</case-id>
+		<warning-count>1</warning-count>
+		<next-index>9</next-index>
+		<footer-text>SE*6*6001</footer-text>
+	</result>
+	<result>
+	    <description>Handling a segment identifier mismatch. Expected a transaction set footer.</description>
+		<test>check-footer</test>
+		<case-id>6</case-id>
+		<warning-count>1</warning-count>
+		<next-index>7</next-index>
+	</result>
+	<result>
+	    <description>Control number and child count mismatch handling.</description>
+		<test>check-footer</test>
+		<case-id>7</case-id>
+		<warning-count>2</warning-count>
+		<next-index>9</next-index>
+		<footer-text>SE*6*6001</footer-text>
+	</result>
+	<result>
+	    <description>Segment identfier, control number and child count mismatch handling.</description>
+		<test>check-footer</test>
+		<case-id>8</case-id>
+		<warning-count>1</warning-count>
+		<next-index>7</next-index>
+	</result>
+	<result>
+		<test>parse-header</test>
+		<case-id>1</case-id>
+		<next-index>4</next-index>
+	</result>
+	<result>
+		<test>parse-header</test>
+		<case-id>2</case-id>
+	</result>
+	<result>
+		<test>parse-header</test>
+		<case-id>3</case-id>
+	</result>
+	<result>
+		<test>parse-header</test>
+		<case-id>4</case-id>
+	</result>	
+</test-results>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test-cases>
+    <test-case id="1" test="string-to-xml">
+        <description>Test field parsing with default delimiters</description>
+        <segment-index>2</segment-index>
+        <delimiters/>
+    </test-case>
+    <test-case id="2" test="string-to-xml">
+        <description>Test field/component parsing with default delimiters</description>
+        <segment-index>3</segment-index>
+        <delimiters/>
+    </test-case>
+    <test-case id="3" test="string-to-xml">
+        <description>Test field/component/subcomponent parsing with default delimiters</description>
+        <segment-index>4</segment-index>
+        <delimiters/>
+    </test-case>
+    <test-case id="4" test="string-to-xml">
+        <description>Test field parsing with non-matching component delimiter</description>
+        <segment-index>2</segment-index>
+        <delimiters>,,+,</delimiters>
+    </test-case>
+    <test-case id="5" test="string-to-xml">
+        <description>Test field/component parsing with non-matching component delimiter</description>
+        <segment-index>3</segment-index>
+        <delimiters>,,+,</delimiters>
+    </test-case>
+    <test-case id="6" test="string-to-xml">
+        <description>Test field/component/subcomponent parsing with non-matching component delimiter</description>
+        <segment-index>4</segment-index>
+        <delimiters>,,+,</delimiters>
+    </test-case>
+    <test-case id="7" test="string-to-xml">
+        <description>Test field parsing with subcompnent delimiter</description>
+        <segment-index>2</segment-index>
+        <delimiters>,,,;</delimiters>
+    </test-case>
+    <test-case id="8" test="string-to-xml">
+        <description>Test field/component parsing with subcomponent delimiter</description>
+        <segment-index>3</segment-index>
+        <delimiters>,,,;</delimiters>
+    </test-case>
+    <test-case id="9" test="string-to-xml">
+        <description>Test field/component/subcomponent parsing with subcomponent delimiter</description>
+        <segment-index>4</segment-index>
+        <delimiters/>
+    </test-case>
+    <test-case id="1" test="check-footer">
+    	<description>Check valid IEA footer</description>
+    	<header-index>1</header-index>
+    	<footer-index>10</footer-index>
+    	<footer-identifier>IEA</footer-identifier>
+    	<group-count>1</group-count>
+    	<control-number-index>14</control-number-index>
+    </test-case>
+    <test-case id="2" test="check-footer">
+    	<description>Check valid GE footer</description>
+    	<header-index>2</header-index>
+    	<footer-index>9</footer-index>
+    	<footer-identifier>GE</footer-identifier>
+    	<group-count>1</group-count>
+    	<control-number-index>7</control-number-index>
+    </test-case>
+    <test-case id="3" test="check-footer">
+    	<description>Check valid SE footer</description>
+    	<header-index>3</header-index>
+    	<footer-index>8</footer-index>
+    	<footer-identifier>SE</footer-identifier>
+    	<group-count>6</group-count>
+    	<control-number-index>3</control-number-index>
+    </test-case>
+    <test-case id="4" test="check-footer">
+    	<description>Check child count mismatch</description>
+    	<header-index>3</header-index>
+    	<footer-index>8</footer-index>
+    	<footer-identifier>SE</footer-identifier>
+    	<group-count>8</group-count>
+    	<control-number-index>3</control-number-index>
+    </test-case>
+    <test-case id="5" test="check-footer">
+    	<description>Check control number mismatch</description>
+    	<header-index>3</header-index>
+    	<footer-index>8</footer-index>
+    	<footer-identifier>SE</footer-identifier>
+    	<group-count>6</group-count>
+    	<control-number-index>2</control-number-index>
+    </test-case>
+    <test-case id="6" test="check-footer">
+    	<description>Check identifier mismatch</description>
+    	<header-index>3</header-index>
+    	<footer-index>7</footer-index>
+    	<footer-identifier>SE</footer-identifier>
+    	<group-count>6</group-count>
+    	<control-number-index>3</control-number-index>
+    </test-case>
+    <test-case id="7" test="check-footer">
+    	<description>Check child and control mismatch</description>
+    	<header-index>3</header-index>
+    	<footer-index>8</footer-index>
+    	<footer-identifier>SE</footer-identifier>
+    	<group-count>8</group-count>
+    	<control-number-index>2</control-number-index>
+    </test-case>
+    <test-case id="8" test="check-footer">
+    	<description>Check all mismatches</description>
+    	<header-index>3</header-index>
+    	<footer-index>7</footer-index>
+    	<footer-identifier>SE</footer-identifier>
+    	<group-count>8</group-count>
+    	<control-number-index>2</control-number-index>
+    </test-case>
+    <test-case id="1" test="parse-header">
+    	<description>Check handling for generic segment</description>
+    	<start-index>4</start-index>
+    </test-case>
+    <test-case id="2" test="parse-header">
+    	<description>Check handling for Transaction Set</description>
+    	<start-index>3</start-index>
+    </test-case>
+    <test-case id="3" test="parse-header">
+    	<description>Check handling for Functional Group</description>
+    	<start-index>2</start-index>
+    </test-case>
+    <test-case id="4" test="parse-header">
+    	<description>Check handling for Interchange</description>
+    	<start-index>1</start-index>
+    </test-case>
+</test-cases>

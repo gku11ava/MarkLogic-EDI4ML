@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ex:edi-document xmlns:ex="http://marklogic.com/edi/xml#">
+	<ex:delimiters>
+		<ex:delimiter ex:type="field">*</ex:delimiter>
+		<ex:delimiter ex:type="segment">~</ex:delimiter>
+		<ex:delimiter ex:type="component">:</ex:delimiter>
+	</ex:delimiters>
+	<ex:interchanges ex:count="1">
+		<ex:interchange ex:start-index="1" ex:end-index="10">
+			<ex:control-number>000000006</ex:control-number>
+			<ex:control-version>00501</ex:control-version>
+			<ex:authorization>
+				<ex:qualifier>00</ex:qualifier>
+				<ex:information> </ex:information>
+			</ex:authorization>
+			<ex:security>
+				<ex:qualifier>00</ex:qualifier>
+				<ex:information> </ex:information>
+			</ex:security>
+			<ex:sender>
+				<ex:qualifier>ZZ</ex:qualifier>
+				<ex:identifier>445498161 </ex:identifier>
+			</ex:sender>
+			<ex:receiver>
+				<ex:qualifier>ZZ</ex:qualifier>
+				<ex:identifier>100000013</ex:identifier>
+			</ex:receiver>
+			<ex:interchange-date>110113</ex:interchange-date>
+			<ex:interchange-time>1335</ex:interchange-time>
+			<ex:standard-identifier>^</ex:standard-identifier>
+			<ex:acknowledgement-required>0</ex:acknowledgement-required>
+			<ex:usage-indicator>P</ex:usage-indicator>
+			<ex:component-separator>:</ex:component-separator>
+			<ex:functional-groups ex:count="1">
+				<ex:functional-group ex:start-index="2" ex:end-index="9">
+					<ex:control-number>6</ex:control-number>
+					<ex:functional-code>FA</ex:functional-code>
+					<ex:application-sender>445498161</ex:application-sender>
+					<ex:application-receiver>100000013</ex:application-receiver>
+					<ex:date-format>20110113</ex:date-format>
+					<ex:time-format>13350701</ex:time-format>
+					<ex:responsible-agency-code>X</ex:responsible-agency-code>
+					<ex:document-identifier>005010X231</ex:document-identifier>
+					<ex:transaction-sets ex:count="1">
+						<ex:transaction-set ex:start-index="3" ex:end-index="8">
+							<ex:id>999</ex:id>
+							<ex:control-number>6001</ex:control-number>
+							<ex:document-identifier>005010X231</ex:document-identifier>
+							<ex:segments ex:count="4">
+								<ex:segment ex:index="4" ex:set-position="1">
+									<ex:segment-identifier>AK1</ex:segment-identifier>
+									<ex:fields ex:count="3">
+										<ex:field ex:index="1">HC</ex:field>
+										<ex:field ex:index="2">69</ex:field>
+										<ex:field ex:index="3">005010X222A1</ex:field>
+									</ex:fields>
+								</ex:segment>
+								<ex:segment ex:index="5" ex:set-position="2">
+									<ex:segment-identifier>AK2</ex:segment-identifier>
+									<ex:fields ex:count="3">
+										<ex:field ex:index="1">837</ex:field>
+										<ex:field ex:index="2">000000001</ex:field>
+										<ex:field ex:index="3">005010X222A1</ex:field>
+									</ex:fields>
+								</ex:segment>
+								<ex:segment ex:index="6" ex:set-position="3">
+									<ex:segment-identifier>IK5</ex:segment-identifier>
+									<ex:fields ex:count="1">
+										<ex:field ex:index="1">A</ex:field>
+									</ex:fields>
+								</ex:segment>
+								<ex:segment ex:index="7" ex:set-position="4">
+									<ex:segment-identifier>AK9</ex:segment-identifier>
+									<ex:fields ex:count="4">
+										<ex:field ex:index="1">A</ex:field>
+										<ex:field ex:index="2">1</ex:field>
+										<ex:field ex:index="3">1</ex:field>
+										<ex:field ex:index="4">1</ex:field>
+									</ex:fields>
+								</ex:segment>
+							</ex:segments>
+						</ex:transaction-set>
+					</ex:transaction-sets>
+				</ex:functional-group>
+			</ex:functional-groups>
+		</ex:interchange>
+	</ex:interchanges>
+</ex:edi-document>
+								
