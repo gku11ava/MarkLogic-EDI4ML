@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<edi-mapping xmlns="http://marklogic.com/edi/mapping">
+<edi-mapping xmlns="http://edi4ml/edi/mapping">
   <description>EDI 999 Mapping</description>
   <segment required="true">
     <identifier>AK1</identifier>
     <description>Functional Group Response</description>
-    <element namespace="http://marklogic.com/edi/999" name="functional-group-response"/>
+    <element namespace="http://edi4ml/edi/999" name="functional-group-response"/>
     <fields count="3">
       <field index="1" required="true">
         <name>Functional Identifier</name>
-        <element namespace="http://marklogic.com/edi/999" name="functional-group-identifier"/>
+        <element namespace="http://edi4ml/edi/999" name="functional-group-identifier"/>
       </field>
       <field index="2" required="true">
         <name>Group Control Number</name>
-        <element namespace="http://marklogic.com/edi/999" name="group-control-number"/>
+        <element namespace="http://edi4ml/edi/999" name="group-control-number"/>
       </field>
       <field index="3" required="true">
         <name>Version/Release/Industry Identifier Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="identifier-code"/>
+        <element namespace="http://edi4ml/edi/999" name="identifier-code"/>
       </field>
     </fields>
   </segment>
   <segment required="false">
     <identifier>AK2</identifier>
     <description/>
-    <element namespace="http://marklogic.com/edi/999" name="transaction-set-response"/>
+    <element namespace="http://edi4ml/edi/999" name="transaction-set-response"/>
     <fields count="3">
       <field index="1" required="true">
         <name>Guide Description/Valid Values</name>
-        <element namespace="http://marklogic.com/edi/999" name="valid-values"/>
+        <element namespace="http://edi4ml/edi/999" name="valid-values"/>
       </field>
       <field index="2" required="true">
         <name>Transaction Set Control Number</name>
-        <element namespace="http://marklogic.com/edi/999" name="transaction-set-control-number"/>
+        <element namespace="http://edi4ml/edi/999" name="transaction-set-control-number"/>
       </field>
       <field index="3" required="false">
         <name>Implementation Convention Reference</name>
-        <element namespace="http://marklogic.com/edi/999" name="implementation-convention-reference"/>
+        <element namespace="http://edi4ml/edi/999" name="implementation-convention-reference"/>
       </field>
     </fields>
     <loop id="AK2">
@@ -47,23 +47,23 @@
   <segment required="false">
     <identifier>IK3</identifier>
     <description/>
-    <element namespace="http://marklogic.com/edi/999" name="error-identification"/>
+    <element namespace="http://edi4ml/edi/999" name="error-identification"/>
     <fields count="4">
       <field index="1" required="true">
         <name>Segment ID Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="segment-id"/>
+        <element namespace="http://edi4ml/edi/999" name="segment-id"/>
       </field>
       <field index="2" required="true">
         <name>Segment Position in Transaction Set</name>
-        <element namespace="http://marklogic.com/edi/999" name="segment-position"/>
+        <element namespace="http://edi4ml/edi/999" name="segment-position"/>
       </field>
       <field index="3" required="false">
         <name>Loop Identifier Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="loop-identifier"/>
+        <element namespace="http://edi4ml/edi/999" name="loop-identifier"/>
       </field>
       <field index="4" required="true">
         <name>Segment Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="segment-error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="segment-error-code"/>
       </field>
     </fields>
     <loop id="IK3">
@@ -74,63 +74,63 @@
   <segment required="false">
     <identifier>CTX</identifier>
     <description/>
-    <element namespace="http://marklogic.com/edi/999" name="context"/>
+    <element namespace="http://edi4ml/edi/999" name="context"/>
     <fields count="6">
       <field index="1" required="true">
         <name>Context Identification</name>
-        <element namespace="http://marklogic.com/edi/999" name="context-identification"/>
+        <element namespace="http://edi4ml/edi/999" name="context-identification"/>
         <components count="2">
           <component index="1" required="true">
             <name>Context Name</name>
-            <element namespace="http://marklogic.com/edi/999" name="context-name"/>
+            <element namespace="http://edi4ml/edi/999" name="context-name"/>
           </component>
           <component index="2" required="false">
             <name>Context Reference</name>
-            <element namespace="http://marklogic.com/edi/999" name="context-reference"/>
+            <element namespace="http://edi4ml/edi/999" name="context-reference"/>
           </component>
         </components>
       </field>
       <field index="2" required="false">
         <name>Segment ID Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="segment-id"/>
+        <element namespace="http://edi4ml/edi/999" name="segment-id"/>
       </field>
       <field index="3" required="true">
         <name>Segment Position in Transaction Set</name>
-        <element namespace="http://marklogic.com/edi/999" name="segment-position"/>
+        <element namespace="http://edi4ml/edi/999" name="segment-position"/>
       </field>
       <field index="4" required="false">
         <name>Loop Identifier Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="loop-identifier"/>
+        <element namespace="http://edi4ml/edi/999" name="loop-identifier"/>
       </field>
       <field index="5" required="false">
         <name>Position in Segment</name>
-        <element namespace="http://marklogic.com/edi/999" name="position-in-segment"/>
+        <element namespace="http://edi4ml/edi/999" name="position-in-segment"/>
         <components count="3">
           <component index="1" required="true">
             <name>Element Position Segment</name>
-            <element namespace="http://marklogic.com/edi/999" name="field-index"/>
+            <element namespace="http://edi4ml/edi/999" name="field-index"/>
           </component>
           <component index="2" required="false">
             <name>Component Data Element Position in Composite</name>
-            <element namespace="http://marklogic.com/edi/999" name="component-index"/>
+            <element namespace="http://edi4ml/edi/999" name="component-index"/>
           </component>
           <component index="3" required="false">
             <name>Repeating Data Element Position</name>
-            <element namespace="http://marklogic.com/edi/999" name="sub-component-index"/>
+            <element namespace="http://edi4ml/edi/999" name="sub-component-index"/>
           </component>
         </components>
       </field>
       <field index="6" required="false">
         <name>Reference in Segment</name>
-        <element namespace="http://marklogic.com/edi/999" name="segment-reference"/>
+        <element namespace="http://edi4ml/edi/999" name="segment-reference"/>
         <components count="2">
           <component index="1" required="true">
             <name>Data Element Reference Number</name>
-            <element namespace="http://marklogic.com/edi/999" name="element-reference-number"/>
+            <element namespace="http://edi4ml/edi/999" name="element-reference-number"/>
           </component>
           <component index="2" required="false">
             <name>Data Element Reference Number</name>
-            <element namespace="http://marklogic.com/edi/999" name="element-reference-number"/>
+            <element namespace="http://edi4ml/edi/999" name="element-reference-number"/>
           </component>
         </components>
       </field>
@@ -139,37 +139,37 @@
   <segment required="false">
     <identifier>IK4</identifier>
     <description/>
-    <element namespace="http://marklogic.com/edi/999" name="implementation-data-element"/>
+    <element namespace="http://edi4ml/edi/999" name="implementation-data-element"/>
     <fields count="4">
       <field index="1" required="true">
         <name>Position in Segment</name>
-        <element namespace="http://marklogic.com/edi/999" name="position-in-segment"/>
+        <element namespace="http://edi4ml/edi/999" name="position-in-segment"/>
         <components count="3">
           <component index="1" required="true">
             <name>Element Position in Segment</name>
-            <element namespace="http://marklogic.com/edi/999" name="field-index"/>
+            <element namespace="http://edi4ml/edi/999" name="field-index"/>
           </component>
           <component index="2" required="false">
             <name>Component Data Element Position in Composite</name>
-            <element namespace="http://marklogic.com/edi/999" name="component-index"/>
+            <element namespace="http://edi4ml/edi/999" name="component-index"/>
           </component>
           <component index="3" required="false">
             <name>Repeating Data Element Position</name>
-            <element namespace="http://marklogic.com/edi/999" name="sub-component-index"/>
+            <element namespace="http://edi4ml/edi/999" name="sub-component-index"/>
           </component>
         </components>
       </field>
       <field index="2" required="false">
         <name>Data Element Reference Number</name>
-        <element namespace="http://marklogic.com/edi/999" name="element-reference-number"/>
+        <element namespace="http://edi4ml/edi/999" name="element-reference-number"/>
       </field>
       <field index="3" required="true">
         <name>Implementation Data Element Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="4" required="false">
         <name>Copy of Bad Data Element</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-element"/>
+        <element namespace="http://edi4ml/edi/999" name="error-element"/>
       </field>
     </fields>
     <loop id="IK4">
@@ -179,74 +179,74 @@
   <segment required="true">
     <identifier>IK5</identifier>
     <description/>
-    <element namespace="http://marklogic.com/edi/999" name="transaction-set-response"/>
+    <element namespace="http://edi4ml/edi/999" name="transaction-set-response"/>
     <fields count="6">
       <field index="1" required="true">
         <name>Transaction Set Acknowledgement Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="acknowledgement-code"/>
+        <element namespace="http://edi4ml/edi/999" name="acknowledgement-code"/>
       </field>
       <field index="2" required="false">
         <name>Transaction Set Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="3" required="false">
         <name>Transaction Set Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="4" required="false">
         <name>Transaction Set Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="5" required="false">
         <name>Transaction Set Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="6" required="false">
         <name>Transaction Set Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
     </fields>
   </segment>
   <segment name="AK9" required="true">
     <identifier>AK9</identifier>
     <description/>
-    <element namespace="http://marklogic.com/edi/999" name="functional-group-response-trailer"/>
+    <element namespace="http://edi4ml/edi/999" name="functional-group-response-trailer"/>
     <fields count="9">
       <field index="1" required="true">
         <name>Functional Group Acknowledgement Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="acknowledgement-code"/>
+        <element namespace="http://edi4ml/edi/999" name="acknowledgement-code"/>
       </field>
       <field index="2" required="true">
         <name>Number of Transaction Sets Included</name>
-        <element namespace="http://marklogic.com/edi/999" name="included-transaction-sets"/>
+        <element namespace="http://edi4ml/edi/999" name="included-transaction-sets"/>
       </field>
       <field index="3" required="true">
         <name>Number of Received Transaction Sets</name>
-        <element namespace="http://marklogic.com/edi/999" name="received-transaction-sets"/>
+        <element namespace="http://edi4ml/edi/999" name="received-transaction-sets"/>
       </field>
       <field index="4" required="true">
         <name>Number of Accepted Transaction Sets</name>
-        <element namespace="http://marklogic.com/edi/999" name="accepted-transaction-sets"/>
+        <element namespace="http://edi4ml/edi/999" name="accepted-transaction-sets"/>
       </field>
       <field index="5" required="false">
         <name>Functional Group Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="6" required="false">
         <name>Functional Group Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="7" required="false">
         <name>Functional Group Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="8" required="false">
         <name>Functional Group Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
       <field index="9" required="false">
         <name>Functional Group Syntax Error Code</name>
-        <element namespace="http://marklogic.com/edi/999" name="error-code"/>
+        <element namespace="http://edi4ml/edi/999" name="error-code"/>
       </field>
     </fields>
   </segment>

@@ -1,4 +1,4 @@
-module namespace epc = "http://marklogic.com/edi/parser/commons";
+module namespace epc = "http://edi4ml/edi/parser/commons";
 (:~
  : Module: edi-parser-commons.xqy
  : Date: 8/3/2015

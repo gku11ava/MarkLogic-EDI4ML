@@ -8,10 +8,10 @@ xquery version "1.0-ml";
  :  Functional Group : Count of transaction sets
  :  Transaction Set : Count of segments, including the transaction set header and footer segments.
  :)
-import module namespace epx = "http://marklogic.com/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
+import module namespace epx = "http://edi4ml/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
 import module namespace test = "http://marklogic.com/roxy/test-helper" at "/test/test-helper.xqy";
 
-declare namespace ex = "http://marklogic.com/edi/xml#";
+declare namespace ex = "http://edi4ml/edi/xml#";
 
 (: Sample EDI document :)
 declare variable $EDI-SEGMENTS := fn:tokenize(fn:doc("/test-data/sample999.edi"), "~");

@@ -1,4 +1,4 @@
-module namespace epx = "http://marklogic.com/edi/parser/xml";
+module namespace epx = "http://edi4ml/edi/parser/xml";
 (:~
  : This module contains functions used to convert an EDI x12 document to XML format,
  : EDI maps generated from the edi-parser-map library into XML, or XML into
@@ -27,9 +27,9 @@ module namespace epx = "http://marklogic.com/edi/parser/xml";
  : Each ex:sub-component contains an index attribute that represents its positional index within
  : the component and the text value for the sub-component.
  :)
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
 
-declare namespace ex = "http://marklogic.com/edi/xml#";
+declare namespace ex = "http://edi4ml/edi/xml#";
 
 declare variable $TRACE-DEBUG as xs:string := "edi-parser-xml";
 declare variable $TRACE-DETAIL as xs:string := "edi-parser-xml-detail";

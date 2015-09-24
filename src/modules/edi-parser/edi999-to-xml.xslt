@@ -2,9 +2,9 @@
 
 <xsl:stylesheet version="1.0" 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:ex="http://marklogic.com/edi/xml">
+  xmlns:ex="http://edi4ml/edi/xml#">
   <xsl:template match="/">
-    <xsl:element name="edi-document" namespace="http://marklogic.com/edi/xml">
+    <xsl:element name="edi-document" namespace="http://edi4ml/edi/xml#">
       <ex:document-type>999</ex:document-type>
 <!--  -->      <xsl:for-each select="ex:interchanges/ex:interchange">
         <xsl:call-template name="interchange">
@@ -123,14 +123,14 @@
   <xsl:template name="AK1">
     <xsl:param name="segment-node"/>
     <xsl:param name="segments"/>
-    <xsl:element name="functional-group-response" namespace="http://marklogic.com/edi/999">
-      <xsl:element name="functional-identifier" namespace="http://marklogic.com/edi/999">
+    <xsl:element name="functional-group-response" namespace="http://edi4ml/edi/999">
+      <xsl:element name="functional-identifier" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
       </xsl:element>
-      <xsl:element name="group-control-number" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="group-control-number" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
       </xsl:element>
-      <xsl:element name="identifier-code" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="identifier-code" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
       </xsl:element>
     </xsl:element>
@@ -139,14 +139,14 @@
   <xsl:template name="AK2">
     <xsl:param name="segment-node"/>
     <xsl:param name="segments"/>
-    <xsl:element name="transaction-set-response-header" namespace="http://marklogic.com/edi/999">
-      <xsl:element name="transaction-set-identifier" namespace="http://marklogic.com/edi/999">
+    <xsl:element name="transaction-set-response-header" namespace="http://edi4ml/edi/999">
+      <xsl:element name="transaction-set-identifier" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
       </xsl:element>
-      <xsl:element name="set-control-number" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="set-control-number" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
       </xsl:element>
-      <xsl:element name="convention-reference" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="convention-reference" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
       </xsl:element>
     </xsl:element>
@@ -155,17 +155,17 @@
   <xsl:template name="IK3">
     <xsl:param name="segment-node"/>
     <xsl:param name="segments"/>
-    <xsl:element name="error-identification" namespace="http://marklogic.com/edi/999">
-      <xsl:element name="segment-identifier" namespace="http://marklogic.com/edi/999">
+    <xsl:element name="error-identification" namespace="http://edi4ml/edi/999">
+      <xsl:element name="segment-identifier" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
       </xsl:element>
-      <xsl:element name="segment-position" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="segment-position" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
       </xsl:element>
-      <xsl:element name="loop-identifier" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="loop-identifier" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
       </xsl:element>
-      <xsl:element name="error-code" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="error-code" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=4]"/>
       </xsl:element>
     </xsl:element>
@@ -178,18 +178,18 @@
     <xsl:variable name="context" select="segment-node/ex:fields/ex:field[./@index=1]"/>
     <xsl:choose>
       <xsl:when test="loop-parent/ex:segment-identifier = 'IK3' and segment-node/ex:fields/@count = 1">
-        <xsl:element name="business-unit-identifier" namespace="http://marklogic.com/edi/999">
+        <xsl:element name="business-unit-identifier" namespace="http://edi4ml/edi/999">
           <xsl:choose>
             <xsl:when test="context/ex:components/ex:component">
-              <xsl:element name="context-name" namespace="http://marklogic.com/edi/999">
+              <xsl:element name="context-name" namespace="http://edi4ml/edi/999">
                 <xsl:value-of select="context/ex:components/ex:component[@index=1]"/> 
               </xsl:element>
-              <xsl:element name="context-reference" namespace="http://marklogic.com/edi/999">
+              <xsl:element name="context-reference" namespace="http://edi4ml/edi/999">
                 <xsl:value-of select="context/ex:components/ex:component[@index=2]"/>
               </xsl:element>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:element name="context-name" namespace="http://marklogic.com/edi/999">
+              <xsl:element name="context-name" namespace="http://edi4ml/edi/999">
                 <xsl:value-of select="context"/>
               </xsl:element>
             </xsl:otherwise>
@@ -197,18 +197,18 @@
         </xsl:element>
       </xsl:when>
       <xsl:when test="loop-parent/ex:segment-identifier = 'IK3' and segment-node/ex:fields/ex:field/@count > 1">
-        <xsl:element name="segment-context" namespace="http://marklogic.com/edi/999">
+        <xsl:element name="segment-context" namespace="http://edi4ml/edi/999">
           <xsl:choose>
             <xsl:when test="context/ex:components/ex:component">
-              <xsl:element name="context-name" namespace="http://marklogic.com/edi/999">
+              <xsl:element name="context-name" namespace="http://edi4ml/edi/999">
                 <xsl:value-of select="context/ex:components/ex:component[@index=1]"/> 
               </xsl:element>
-              <xsl:element name="context-reference" namespace="http://marklogic.com/edi/999">
+              <xsl:element name="context-reference" namespace="http://edi4ml/edi/999">
                 <xsl:value-of select="context/ex:components/ex:component[@index=2]"/>
               </xsl:element>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:element name="context-name" namespace="http://marklogic.com/edi/999">
+              <xsl:element name="context-name" namespace="http://edi4ml/edi/999">
                 <xsl:value-of select="context"/>
               </xsl:element>
             </xsl:otherwise>
@@ -223,32 +223,32 @@
     <xsl:param name="segment-node"/>
     <xsl:param name="segments"/>
     <xsl:variable name="position-field" select="segment-node/ex:fields/ex:field[@index=1]"/>
-    <xsl:element name="data-element" namespace="http://marklogic.com/edi/999">
+    <xsl:element name="data-element" namespace="http://edi4ml/edi/999">
       <xsl:choose>
         <xsl:when test="position-field/ex:components/ex:component">
-          <xsl:element name="element-position" namespace="http://marklogic.com/edi/999">
+          <xsl:element name="element-position" namespace="http://edi4ml/edi/999">
             <xsl:value-of select="position-field/ex:components/ex:component[./@index=1]"/>
           </xsl:element>
-          <xsl:element name="element-component-position" namespace="http://marklogic.com/edi/999">
+          <xsl:element name="element-component-position" namespace="http://edi4ml/edi/999">
             <xsl:value-of select="position-field/ex:components/ex:component[./@index=2]"/>
           </xsl:element>
-          <xsl:element name="element-repeating-position" namespace="http://marklogic.com/edi/999">
+          <xsl:element name="element-repeating-position" namespace="http://edi4ml/edi/999">
             <xsl:value-of select="position-field/ex:components/ex:component[./@index=3]"/>
           </xsl:element>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:element name="element-position" namespace="http://marklogic.com/edi/999">
+          <xsl:element name="element-position" namespace="http://edi4ml/edi/999">
             <xsl:value-of select="position-field"/>
           </xsl:element>
         </xsl:otherwise>
       </xsl:choose>      
-      <xsl:element name="element-reference-number" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="element-reference-number" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment/node/ex:fields/ex:field[./@index=2]"/>
       </xsl:element>
-      <xsl:element name="error-code" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="error-code" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment/node/ex:fields/ex:field[./@index=3]"/>
       </xsl:element>
-      <xsl:element name="bad-element" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="bad-element" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment/node/ex:fields/ex:field[./@index=4]"/>
       </xsl:element>
     </xsl:element>
@@ -257,12 +257,12 @@
   <xsl:template name="IK5">
     <xsl:param name="segment-node"/>
     <xsl:param name="segments"/>
-    <xsl:element name="transaction-set-response-trailer" namespace="http://marklogic.com/edi/999">
-      <xsl:element name="transaction-status" namespace="http://marklogic.com/edi/999">
+    <xsl:element name="transaction-set-response-trailer" namespace="http://edi4ml/edi/999">
+      <xsl:element name="transaction-status" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
       </xsl:element>
       <xsl:for-each select="segment-node/ex:fields/ex:field[./@index > 1]">
-        <xsl:element name="error-code" namespace="http://marklogic.com/edi/999">
+        <xsl:element name="error-code" namespace="http://edi4ml/edi/999">
           <xsl:value-of select="."/>
         </xsl:element>
       </xsl:for-each>
@@ -272,21 +272,21 @@
   <xsl:template name="AK9">
     <xsl:param name="segment-node"/>
     <xsl:param name="segments"/>
-    <xsl:element name="functional-group-response-trailer" namespace="http://marklogic.com/edi/999">
-      <xsl:element name="acknowledgment-code" namespace="http://marklogic.com/edi/999">
+    <xsl:element name="functional-group-response-trailer" namespace="http://edi4ml/edi/999">
+      <xsl:element name="acknowledgment-code" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
       </xsl:element>
-      <xsl:element name="included-transaction-sets" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="included-transaction-sets" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
       </xsl:element>
-      <xsl:element name="received-transaction-sets" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="received-transaction-sets" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
       </xsl:element>
-      <xsl:element name="accepted-transaction-sets" namespace="http://marklogic.com/edi/999">
+      <xsl:element name="accepted-transaction-sets" namespace="http://edi4ml/edi/999">
         <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=4]"/>
       </xsl:element>
       <xsl:for-each select="segment-node/ex:fields/ex:field[./@index > 4]">
-        <xsl:element name="error-code" namespace="http://marklogic.com/edi/999">
+        <xsl:element name="error-code" namespace="http://edi4ml/edi/999">
           <xsl:value-of select="."/>
         </xsl:element>
       </xsl:for-each> 
@@ -298,7 +298,7 @@
 
 <!-- 
 <?xml version="1.0" encoding="UTF-8"?>
-<ex:edi-document xmlns:ex="http://marklogic.com/edi/xml">
+<ex:edi-document xmlns:ex="http://edi4ml/edi/xml">
   <ex:interchanges count="1">
     <ex:interchange start-index="1" end-index="15">
       <ex:original-header>ISA*00* *00* *ZZ*445498161 *ZZ*100000013*110113*0930*^*00501*000000002*0*P*:</ex:original-header>

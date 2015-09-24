@@ -9,11 +9,11 @@ xquery version "1.0-ml";
  :  fields with components.  Components will contain text values, empty components and sub-components.
  :  Sub-components will contain text values or be empty.
  :)
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
-import module namespace epx = "http://marklogic.com/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epx = "http://edi4ml/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
 import module namespace test = "http://marklogic.com/roxy/test-helper" at "/test/test-helper.xqy";
 
-declare namespace ex = "http://marklogic.com/edi/xml#";
+declare namespace ex = "http://edi4ml/edi/xml#";
 
 (: Delimiters used to build the EDI segment :)
 declare variable $DELIMITERS := epc:build-delimiter-map((), (), (), ";");

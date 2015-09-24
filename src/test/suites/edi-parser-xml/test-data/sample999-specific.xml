@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ex:edi-document xmlns:ex="http://marklogic.com/edi/xml#">
+<ex:edi-document xmlns:ex="http://edi4ml/edi/xml#">
 	<ex:delimiters>
 		<ex:delimiter ex:type="field">*</ex:delimiter>
 		<ex:delimiter ex:type="segment">~</ex:delimiter>

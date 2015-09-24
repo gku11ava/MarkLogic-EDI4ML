@@ -9,10 +9,10 @@ xquery version "1.0-ml";
  :  its individual segments, fields and repeating elements and provide accurate counts
  :  for each of the components.
  :)
-import module namespace epx = "http://marklogic.com/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
+import module namespace epx = "http://edi4ml/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
 import module namespace test = "http://marklogic.com/roxy/test-helper" at "/test/test-helper.xqy";
 
-declare namespace ex = "http://marklogic.com/edi/xml#";
+declare namespace ex = "http://edi4ml/edi/xml#";
 
 declare variable $EDI-DOC := fn:doc("/test-data/sample999.edi");
 declare variable $GENERIC-XML := fn:doc("/test-data/sample999-generic.xml")/ex:edi-document;

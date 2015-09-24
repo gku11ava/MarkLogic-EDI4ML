@@ -15,11 +15,11 @@ xquery version "1.0-ml";
  :
  : Successful execution of these tests depends on successful execution of the string-to-xml function tests.
  :)
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
-import module namespace epx = "http://marklogic.com/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epx = "http://edi4ml/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
 import module namespace test = "http://marklogic.com/roxy/test-helper" at "/test/test-helper.xqy";
 
-declare namespace ex = "http://marklogic.com/edi/xml#";
+declare namespace ex = "http://edi4ml/edi/xml#";
 
 (: File containing mock EDI segment to parse :)
 declare variable $TEST-SEGMENT := fn:doc("/test-data/mock-edi-segment.edi")/text();

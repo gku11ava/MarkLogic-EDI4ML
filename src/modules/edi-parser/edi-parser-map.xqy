@@ -1,4 +1,4 @@
-module namespace epm = "http://marklogic.com/edi/parser/map";
+module namespace epm = "http://edi4ml/edi/parser/map";
 (:~
  : This module contains functions used to convert an EDI x12 document to a map format,
  : convert ex:edi-document XML into a map or a map into EDI x12 formatted text.
@@ -22,9 +22,9 @@ module namespace epm = "http://marklogic.com/edi/parser/map";
  :
  :)
 
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
 
-declare namespace ex = "http://marklogic.com/edi/xml";
+declare namespace ex = "http://edi4ml/edi/xml";
 
 (:~
  : Converts the provided EDI x12 document into a map using the user provided delimiters.  Any empty delimiters

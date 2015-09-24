@@ -2,11 +2,11 @@ xquery version "1.0-ml";
 (:~
  : 
  :)
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
-import module namespace epx = "http://marklogic.com/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epx = "http://edi4ml/edi/parser/xml" at "/modules/edi-parser/edi-parser-xml.xqy";
 import module namespace test = "http://marklogic.com/roxy/test-helper" at "/test/test-helper.xqy";
 
-declare namespace ex = "http://marklogic.com/edi/xml#";
+declare namespace ex = "http://edi4ml/edi/xml#";
 
 declare variable $EDI-SEGMENTS := fn:tokenize(fn:doc("/test-data/sample999.edi"), "~");
 declare variable $EDI-XML := fn:doc("/test-data/sample999-specific.xml")/ex:edi-document;

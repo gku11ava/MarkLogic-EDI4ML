@@ -1,11 +1,11 @@
 xquery version "1.0-ml";
 (: Convert from generic XML document to context specific XML --  This is still in Proof of Concept :)
-module namespace exc = "http://marklogic.com/edi/parser/xml/converter";
+module namespace exc = "http://edi4ml/edi/parser/xml/converter";
 
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
 
-declare namespace em = "http://marklogic.com/edi/mapping";
-declare namespace ex = "http://marklogic.com/edi/xml";
+declare namespace em = "http://edi4ml/edi/mapping";
+declare namespace ex = "http://edi4ml/edi/xml";
 
 declare function exc:convert-edi-document($edi-document as element(ex:edi-document), $mapping as element(em:edi-mapping)) as element()* {
     if($edi-document/ex:interchanges) then
@@ -30,7 +30,7 @@ declare function exc:convert-header($content as element(), $mapping as element(e
         element{fn:node-name($content)} {
             $content-fields,
             if($type = ("interchange", "group")) then
-                element{fn:QName("http://marklogic.com/edi/xml", $type-mappings/children/fn:string(.))} {
+                element{fn:QName("http://edi4ml/edi/xml", $type-mappings/children/fn:string(.))} {
                     attribute {xs:QName("count")} {$children/@count/fn:string(.)},
                     for $child in $children/element()
                     return exc:convert-header($child, $mapping)

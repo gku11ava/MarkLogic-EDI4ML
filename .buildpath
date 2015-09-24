@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="deploy/lib/templates"/>
+	<buildpathentry kind="src" path="deploy/lib/xquery"/>
+	<buildpathentry kind="src" path="deploy/sample"/>
+	<buildpathentry kind="src" path="src/app/config"/>
+	<buildpathentry kind="src" path="src/app/controllers"/>
+	<buildpathentry kind="src" path="src/app/models"/>
+	<buildpathentry kind="src" path="src/app/views/appbuilder"/>
+	<buildpathentry kind="src" path="src/app/views/helpers"/>
+	<buildpathentry kind="src" path="src/app/views/layouts"/>
+	<buildpathentry kind="src" path="src/modules/edi-parser"/>
+	<buildpathentry kind="src" path="src/roxy"/>
+	<buildpathentry kind="src" path="src/test"/>
+	<buildpathentry kind="con" path="org.eclipse.dltk.launching.INTERPRETER_CONTAINER"/>
+</buildpath>

@@ -4,7 +4,7 @@ xquery version "1.0-ml";
  : The tokenizer there differs from the basic fn:tokenize with the addition of
  : special handling to escape out regex reserved characters.
  :)
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
 import module namespace test = "http://marklogic.com/roxy/test-helper" at "/test/test-helper.xqy";
 
 declare variable $RESERVED-CHARACTERS := ("[", "\", "^", "$", ".", "|", "?", "*", "+", "{", "}", "(", ")");

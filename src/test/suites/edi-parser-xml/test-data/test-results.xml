@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<test-results xmlns:ex="http://marklogic.com/edi/xml#">
+<test-results xmlns:ex="http://edi4ml/edi/xml#">
 	<result>
 		<test>string-to-xml</test>
 		<case-id>1</case-id>

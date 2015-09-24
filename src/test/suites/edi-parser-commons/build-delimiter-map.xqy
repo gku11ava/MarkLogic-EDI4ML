@@ -11,7 +11,7 @@ xquery version "1.0-ml";
  : individual parameters while the second provides the ability to build a map from an existing one.  Empty values or an
  : empty map are replaced with default values specified in the edi-parser-commons library.
  :)
-import module namespace epc = "http://marklogic.com/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
+import module namespace epc = "http://edi4ml/edi/parser/commons" at "/modules/edi-parser/edi-parser-commons.xqy";
 import module namespace test = "http://marklogic.com/roxy/test-helper" at "/test/test-helper.xqy";
 
 declare variable $ALTERNATE-DELIMITERS := ("!", ",", "@", "=");

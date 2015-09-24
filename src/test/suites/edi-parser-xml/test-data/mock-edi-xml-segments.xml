@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<segments xmlns:ex="http://marklogic.com/edi/xml#">
+<segments xmlns:ex="http://edi4ml/edi/xml#">
 	<sample test="xml-to-string" case-id="1">
 		<ex:field ex:index="1">12345!HelloWorld</ex:field>
 	</sample>
