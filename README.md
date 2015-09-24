@@ -1,15 +1,11 @@
 # EDI4ML
-EDI4ML consists of 2 parts, the standalone library modules in src/modules/edi-parser and a local Roxy framework for testing the XQuery modules.
+EDI4ML is a set of custom XQuery libraries that can be used to parse an EDI ASC X12 document into a generic XML structure for storage and manipulation in MarkLogic and then convert the XML back into an EDI ASC X12 document.
 
-The EDI4ML XQuery library modules provides functions to parse an EDI X12 document into one of 2 possible XML formats and from either XML format back into X12.
+The converted XML is quite generic and with nested elements that correspond to the EDI segment, field, component and sub-component constructs.  Once an EDI document has been converted to this generic XML structure, an XSL transform can be applied to build a context sensitive XML structure that adds meaning to the individual segments, fields, components and sub-components specific to a particular EDI format.
 
-The first XML format is a generic XML structure with an edi-document root.  The document is then broken down into its constituent segments, fields, components and sub-components.
-
-The second XML format is an extension of the generic XML structure that includes specialized parsing for the standard Interchange, Functional Group and Transaction set elements.
-This format also includes an edi-document root, but then contains an interchange element that contains one or more function-groups which in turn contains one or more transaction sets.
-Each transaction set is then broken down into the standard segment/field/component/sub-component elements.
-
-Once parsed into XML, business and format specific XSL transforms can be applied to convert and add meaning to the contents.
+EDI4ML consists of 2 parts:
+* a standalone set of library modules in src/modules/edi-parser 
+* a local Roxy framework for testing the XQuery modules.
 
 # Usage Examples
 ## Convert EDI X12 to a generic XML document
