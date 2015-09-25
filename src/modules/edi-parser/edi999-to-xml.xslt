@@ -4,170 +4,249 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:ex="http://edi4ml/edi/xml#">
   <xsl:template match="/">
-    <xsl:element name="edi-document" namespace="http://edi4ml/edi/xml#">
-      <ex:document-type>999</ex:document-type>
-<!--  -->      <xsl:for-each select="ex:interchanges/ex:interchange">
+    <xsl:element name="implementation-acknowledgement" namespace="http://edi4ml/edi/common#">
+      <xsl:for-each select="/ex:edi-document/ex:interchanges/ex:interchange">
         <xsl:call-template name="interchange">
-          <xsl:with-param name="interchange-node"/>
+          <xsl:with-param name="interchange-node" select="."/>
         </xsl:call-template>
-      </xsl:for-each> -->
+      </xsl:for-each>
     </xsl:element>
   </xsl:template>
   
   <xsl:template name="interchange">
     <xsl:param name="interchange-node"/>
-    <xsl:copy>
-      <xsl:for-each select="interchange-node/*">
-        <xsl:choose>
-          <xsl:when test="fn:node-name(.) = 'functional-groups'">
-          	<xsl:copy>
-              <xsl:attribute name="count">
-                <xsl:value-of select="./@count"/>
-          	  </xsl:attribute>
-          	  <xsl:for-each select="./ex:group">
-          	    <xsl:call-template name="group">
-          	      <xsl:with-param name="group-node" select="."/>
-          	    </xsl:call-template>
-          	  </xsl:for-each>
-          	</xsl:copy>
-          </xsl:when>
-          <xsl:when test="fn:starts-with(fn:node-name(.), 'original-')"/>
-          <xsl:otherwise>
-            <xsl:copy-of/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
-    </xsl:copy>
+    <xsl:element name="interchange" namespace="http://edi4ml/edi/common#">
+      <xsl:element name="authorization" namespace="http://edi4ml/edi/common#">
+        <xsl:element name="qualifier" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:authorization/ex:qualifier"/>
+        </xsl:element>
+        <xsl:if test="$interchange-node/ex:authorization/ex:qualifier != '00'">
+          <xsl:element name="information" namespace="http://edi4ml/edi/common#">
+            <xsl:value-of select="$interchange-node/ex:authorization/ex:information"/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:element>
+      <xsl:element name="security" namespace="http://edi4ml/edi/common#">
+        <xsl:element name="qualifier" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:security/ex:qualifier"/>
+        </xsl:element>
+        <xsl:if test="$interchange-node/ex:security/ex:qualifier != '00'">
+          <xsl:element name="information" namespace="http://edi4ml/edi/common#">
+            <xsl:value-of select="$interchange-node/ex:security/ex:information"/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:element>
+      <xsl:element name="sender" namespace="http://edi4ml/edi/common#">
+        <xsl:element name="qualifier" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:sender/ex:qualifier"/>
+        </xsl:element>
+        <xsl:if test="$interchange-node/ex:sender/ex:qualifier != '00'">
+          <xsl:element name="identifier" namespace="http://edi4ml/edi/common#">
+            <xsl:value-of select="$interchange-node/ex:sender/ex:identifier"/>
+          </xsl:element>
+        </xsl:if>
+      </xsl:element>
+      <xsl:element name="receiver" namespace="http://edi4ml/edi/common#">
+        <xsl:element name="qualifier" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:receiver/ex:qualifier"/>
+        </xsl:element>
+        <xsl:element name="identifier" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:receiver/ex:identifier"/>
+        </xsl:element>
+      </xsl:element>
+      <xsl:element name="format" namespace="http://edi4ml/edi/common#">
+        <xsl:element name="interchange-date" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:interchange-date"/>
+        </xsl:element>
+        <xsl:element name="interchange-time" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:interchange-time"/>
+        </xsl:element>
+        <xsl:element name="component-separator" namespace="http://edi4ml/edi/common#">
+          <xsl:value-of select="$interchange-node/ex:component-separator"/>
+        </xsl:element>
+      </xsl:element>
+      <xsl:element name="interchange-standard" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$interchange-node/ex:standard-identifier"/>
+      </xsl:element>
+      <xsl:element name="control-version" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$interchange-node/ex:control-version"/>
+      </xsl:element>
+      <xsl:element name="control-number" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$interchange-node/ex:control-number"/>
+      </xsl:element>
+      <xsl:element name="acknowledgement-required" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$interchange-node/ex:acknowledgement-required"/>
+      </xsl:element>
+      <xsl:element name="usage" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$interchange-node/ex:usage-indicator"/>
+      </xsl:element>
+      <xsl:element name="functional-groups" namespace="http://edi4ml/edi/common#">
+        <xsl:attribute name="count">
+          <xsl:value-of select="$interchange-node/ex:functional-groups/@ex:count"/>
+        </xsl:attribute>
+        <xsl:for-each select="$interchange-node/ex:functional-groups/ex:functional-group">
+          <xsl:call-template name="group">
+            <xsl:with-param name="group-node" select="."/>
+          </xsl:call-template>
+        </xsl:for-each>
+      </xsl:element>
+    </xsl:element>
   </xsl:template>
   
   <xsl:template name="group">
     <xsl:param name="group-node"/>
-    <xsl:copy>
-    	<xsl:for-each select="group-node/*">
-    	  <xsl:choose>
-    	    <xsl:when test="fn:node-name(.) = 'transaction-sets">
-    	      <xsl:copy>
-    	        <xsl:attribute name="count">
-    	          <xsl:value-of select="./@count"/>
-    	        </xsl:attribute>
-    	        <xsl:for-each select="./ex:transaction-set">
-    	          <xsl:call-template name="transactionset">
-    	            <xsl:with-param name="set-node" select="."/>
-    	          </xsl:call-template>
-    	        </xsl:for-each>
-    	      </xsl:copy>
-    	    </xsl:when>
-    	    <xsl:when test="fn:starts-with()fn:node-name(.), 'original-')"/>
-    	    <xsl:otherwise>
-    	      <xsl:copy-of/>
-    	    </xsl:otherwise>
-    	  </xsl:choose>
-    	</xsl:for-each>
-    </xsl:copy>
+    <xsl:element name="functional-group" namespace="http://edi4ml/edi/common#">
+      <xsl:element name="functional-code" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:functional-code"/>
+      </xsl:element>
+      <xsl:element name="sender" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:sender"/>
+      </xsl:element>
+      <xsl:element name="receiver" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:receiver"/>
+      </xsl:element>
+      <xsl:element name="date-format" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:date-format"/>
+      </xsl:element>
+      <xsl:element name="time-format" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:time-format"/>
+      </xsl:element>
+      <xsl:element name="control-number" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:control-number"/>
+      </xsl:element>
+      <xsl:element name="responsible-agency" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:responsible-agency-code"/>
+      </xsl:element>
+      <xsl:element name="document-identifier" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$group-node/ex:document-identifier"/>
+      </xsl:element>
+      <xsl:element name="transaction-sets" namespace="http://edi4ml/edi/common#">
+        <xsl:attribute name="count">
+          <xsl:value-of select="$group-node/ex:transaction-sets/@ex:count"/>
+        </xsl:attribute>
+        <xsl:for-each select="$group-node/ex:transaction-sets/ex:transaction-set">
+          <xsl:call-template name="transactionset">
+    	    <xsl:with-param name="set-node" select="."/>
+    	  </xsl:call-template>
+        </xsl:for-each>
+      </xsl:element>
+    </xsl:element>
   </xsl:template>
   
   <xsl:template name="transactionset">
     <xsl:param name="set-node"/>
-    <xsl:copy>
-    	<xsl:for-each select="set-node/*">
-    	  <xsl:choose>
-    	    <xsl:when test="fn:starts-with(fn:node-name(.), 'original-')"/>
-    	    <xsl:when test="fn:node-name(.) = 'segments'">
-    	      <xsl:for-each select="./ex:segment">
-    	        <xsl:call-template name="segment">
-    	          <xsl:with-param name="segment-node" select="."/>
-    	          <xsl:with-param name="segments" select="set-node/ex:segments"/>
-    	        </xsl:call-template>
-    	      </xsl:for-each>
-    	    </xsl:when>
-    	    <xsl:otherwise>
-    	      <xsl:copy-of/>
-    	    </xsl:otherwise>
-    	  </xsl:choose>
-    	</xsl:for-each>
-    </xsl:copy>
-  </xsl:template>
-  
-  <xsl:template name="segment">
-    <xsl:param name="segment-node"/>
-    <xsl:param name="segments"/>
-    <xsl:choose>
-      <xsl:when test="segment-node/ex:segment-identifier = 'AK1'">
-        <xsl:call-template name="AK1">
-          <xsl:with-param name="segment-node" select="segment-node"/>
-          <xsl:with-param name="segments" select="segments"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="segment-node/ex:segment-identifier = 'AK2'">
-        <xsl:call-template name="AK2">
-          <xsl:with-param name="segment-node" select="segment-node"/>
-          <xsl:with-param name="segments" select="segments"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="segment-node/ex:segment-identifier = 'IK3'">
-        <xsl:call-template name="IK3">
-          <xsl:with-param name="segment-node" select="segment-node"/>
-          <xsl:with-param name="segments" select="segments"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="segment-node/ex:segment-identifier = 'AK9'">
-        <xsl:call-template name="AK9">
-          <xsl:with-param name="segment-node" select="segment-node"/>
-          <xsl:with-param name="segments" select="segments"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise/>
-    </xsl:choose>
+    <xsl:element name="transaction-set" namespace="http://edi4ml/edi/common#">
+      <xsl:element name="transaction-id" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$set-node/ex:id"/>
+      </xsl:element>
+      <xsl:element name="control-number" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$set-node/ex:control-number"/>
+      </xsl:element>
+      <xsl:element name="document-identifier" namespace="http://edi4ml/edi/common#">
+        <xsl:value-of select="$set-node/ex:document-identifier"/>
+      </xsl:element>
+      <!--  Begin Format Specific Handling Here -->
+      <xsl:for-each select="$set-node/ex:segments/ex:segment[./ex:segment-identifier = ('AK1', 'AK2', 'AK9')]">
+        <xsl:variable name="segment-index" select="./@ex:index"/>
+        <xsl:choose>
+          <xsl:when test="./ex:segment-identifier='AK1'">
+            <xsl:call-template name="AK1">
+              <xsl:with-param name="segment" select="."/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="./ex:segment-identifier='AK2'">
+            <xsl:call-template name="AK2">
+              <xsl:with-param name="segment" select="."/>
+              <xsl:with-param name="segments" select="$set-node/ex:segments/ex:segment[./@ex:index > $segment-index]"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="./ex:segment-identifier='AK9'">
+            <xsl:call-template name="AK9">
+              <xsl:with-param name="segment" select="."/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise/>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:element>
   </xsl:template>
   
   <xsl:template name="AK1">
-    <xsl:param name="segment-node"/>
-    <xsl:param name="segments"/>
-    <xsl:element name="functional-group-response" namespace="http://edi4ml/edi/999">
-      <xsl:element name="functional-identifier" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
+    <xsl:param name="segment"/>
+    <xsl:element name="functional-group-response" namespace="http://edi4ml/edi/999#">
+      <xsl:element name="functional-identifier" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=1]"/>
       </xsl:element>
-      <xsl:element name="group-control-number" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
+      <xsl:element name="control-number" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=2]"/>
       </xsl:element>
-      <xsl:element name="identifier-code" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
+      <xsl:element name="identifier-code" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=3]"/>
       </xsl:element>
     </xsl:element>
   </xsl:template>
   
   <xsl:template name="AK2">
-    <xsl:param name="segment-node"/>
+    <xsl:param name="segment"/>
     <xsl:param name="segments"/>
-    <xsl:element name="transaction-set-response-header" namespace="http://edi4ml/edi/999">
-      <xsl:element name="transaction-set-identifier" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
+    <xsl:variable name="next-index" select="min($segments[./ex:segment-identifier=('AK2', 'AK9') and
+      ./@ex:index/number(.) gt number($segment/@ex:index)]/@ex:index)"/>
+    <xsl:element name="transaction-set-response-header" namespace="http://edi4ml/edi/999#">
+      <xsl:element name="transaction-set-identifier" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=1]"/>
       </xsl:element>
-      <xsl:element name="set-control-number" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
+      <xsl:element name="set-control-number" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=2]"/>
       </xsl:element>
-      <xsl:element name="convention-reference" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
+      <xsl:element name="convention-reference" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=3]"/>
       </xsl:element>
+      <xsl:for-each select="$segments[./@ex:index/number(.) lt number($next-index) and ./ex:segment-identifier = 'IK3']">
+            <xsl:call-template name="IK3">
+              <xsl:with-param name="segment" select="."/>
+            </xsl:call-template>
+      </xsl:for-each>
+      <xsl:for-each select="$segments[./@ex:index/number(.) lt number($next-index) and ./ex:segment-identifier = 'IK5']">
+            <xsl:call-template name="IK5">
+              <xsl:with-param name="segment" select="."/>
+            </xsl:call-template>
+      </xsl:for-each>
     </xsl:element>
   </xsl:template>
   
   <xsl:template name="IK3">
-    <xsl:param name="segment-node"/>
+    <xsl:param name="segment"/>
     <xsl:param name="segments"/>
-    <xsl:element name="error-identification" namespace="http://edi4ml/edi/999">
-      <xsl:element name="segment-identifier" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
+    <xsl:variable name="context-stop-index" select="min($segments/ex:segment[./ex:segment-identifier=('IK3', 'IK4', 'IK5') and 
+      ./@ex:index/number(.) gt number($segment/@ex:index)]/@ex:index)"/>
+    <xsl:variable name="loop-stop-index" select="min($segment/ex:segment[./ex:segment-identifier='IK5' and
+      ./@ex:index/number(.) gt number($segment/@ex:index)]/@ex:index)"/>
+    <xsl:element name="error-identification" namespace="http://edi4ml/edi/999#">
+      <xsl:element name="segment-identifier" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=1]"/>
       </xsl:element>
-      <xsl:element name="segment-position" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
+      <xsl:element name="segment-position" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=2]"/>
       </xsl:element>
-      <xsl:element name="loop-identifier" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
+      <xsl:element name="loop-identifier" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=3]"/>
       </xsl:element>
-      <xsl:element name="error-code" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=4]"/>
+      <xsl:element name="error-code" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=4]"/>
       </xsl:element>
+      <xsl:for-each select="$segments/ex:segment[./@ex:index/number(.) lt number($context-stop-index) and 
+          ./@ex:index/number(.) gt number($segment/@ex:index)]">
+        <xsl:call-template name="CTX">
+          <xsl:with-param name="context" select="."/>
+          <xsl:with-param name="loop-identifier" select="$segment/ex:segment-identifier"/>
+        </xsl:call-template>
+      </xsl:for-each>
+      <xsl:for-each select="key('segment-identifier', 'IK4')[./@ex:index/number(.) lt number($loop-stop-index) and
+          ./@ex:index/number(.) gt number($segment/@ex:index)]">
+        <xsl:call-template name="IK4">
+          <xsl:with-param name="segment" select="."/>
+        </xsl:call-template>
+      </xsl:for-each>
     </xsl:element>
   </xsl:template>
   
@@ -255,14 +334,13 @@
   </xsl:template>
   
   <xsl:template name="IK5">
-    <xsl:param name="segment-node"/>
-    <xsl:param name="segments"/>
-    <xsl:element name="transaction-set-response-trailer" namespace="http://edi4ml/edi/999">
-      <xsl:element name="transaction-status" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
+    <xsl:param name="segment"/>
+    <xsl:element name="transaction-set-response-trailer" namespace="http://edi4ml/edi/999#">
+      <xsl:element name="transaction-status" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=1]"/>
       </xsl:element>
-      <xsl:for-each select="segment-node/ex:fields/ex:field[./@index > 1]">
-        <xsl:element name="error-code" namespace="http://edi4ml/edi/999">
+      <xsl:for-each select="$segment/ex:fields/ex:field[./@ex:index > 1]">
+        <xsl:element name="error-code" namespace="http://edi4ml/edi/999#">
           <xsl:value-of select="."/>
         </xsl:element>
       </xsl:for-each>
@@ -270,23 +348,22 @@
   </xsl:template>
   
   <xsl:template name="AK9">
-    <xsl:param name="segment-node"/>
-    <xsl:param name="segments"/>
-    <xsl:element name="functional-group-response-trailer" namespace="http://edi4ml/edi/999">
-      <xsl:element name="acknowledgment-code" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=1]"/>
+    <xsl:param name="segment"/>
+    <xsl:element name="functional-group-response-trailer" namespace="http://edi4ml/edi/999#">
+      <xsl:element name="acknowledgment-code" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=1]"/>
       </xsl:element>
-      <xsl:element name="included-transaction-sets" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=2]"/>
+      <xsl:element name="included-transaction-sets" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=2]"/>
       </xsl:element>
-      <xsl:element name="received-transaction-sets" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=3]"/>
+      <xsl:element name="received-transaction-sets" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=3]"/>
       </xsl:element>
-      <xsl:element name="accepted-transaction-sets" namespace="http://edi4ml/edi/999">
-        <xsl:value-of select="segment-node/ex:fields/ex:field[./@index=4]"/>
+      <xsl:element name="accepted-transaction-sets" namespace="http://edi4ml/edi/999#">
+        <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=4]"/>
       </xsl:element>
-      <xsl:for-each select="segment-node/ex:fields/ex:field[./@index > 4]">
-        <xsl:element name="error-code" namespace="http://edi4ml/edi/999">
+      <xsl:for-each select="$segment/ex:fields/ex:field[./@ex:index > 4]">
+        <xsl:element name="error-code" namespace="http://edi4ml/edi/999#">
           <xsl:value-of select="."/>
         </xsl:element>
       </xsl:for-each> 

@@ -45,7 +45,7 @@
           <xsl:value-of select="$header/ex:fields/ex:field[./@ex:index=5]"/>
         </xsl:element>
         <xsl:if test="$header/ex:fields/ex:field[./@ex:index=5] != '00'">
-          <xsl:element name="information" namespace="http://edi4ml/edi/common#">
+          <xsl:element name="identifier" namespace="http://edi4ml/edi/common#">
             <xsl:value-of select="$header/ex:fields/ex:field[./@ex:index=6]"/>
           </xsl:element>
         </xsl:if>
@@ -54,7 +54,7 @@
         <xsl:element name="qualifier" namespace="http://edi4ml/edi/common#">
           <xsl:value-of select="$header/ex:fields/ex:field[./@ex:index=7]"/>
         </xsl:element>
-        <xsl:element name="information" namespace="http://edi4ml/edi/common#">
+        <xsl:element name="identifier" namespace="http://edi4ml/edi/common#">
           <xsl:value-of select="$header/ex:fields/ex:field[./@ex:index=8]"/>
         </xsl:element>
       </xsl:element>
@@ -104,7 +104,7 @@
   <xsl:template name="parse-group">
     <xsl:param name="group-header"/>
     <xsl:param name="group-trailer"/>
-    <xsl:element name="group" namespace="http://edi4ml/edi/common#">
+    <xsl:element name="functional-group" namespace="http://edi4ml/edi/common#">
       <xsl:element name="functional-code" namespace="http://edi4ml/edi/common#">
         <xsl:value-of select="$group-header/ex:fields/ex:field[./@ex:index=1]"/>
       </xsl:element>
@@ -203,7 +203,7 @@
     <xsl:param name="segment"/>
     <xsl:variable name="segment-index" select="./@ex:index"/>
     <xsl:variable name="next-index" select="min($segments/ex:segment[(./ex:segment-identifier='AK2' or ./ex:segment-identifier='AK9') and
-        ./@ex:index/number(.) gt number($segment/@ex:index)]/@index)"/>
+        ./@ex:index/number(.) gt number($segment/@ex:index)]/@ex:index)"/>
     <xsl:element name="transaction-set-response-header" namespace="http://edi4ml/edi/999#">
       <xsl:element name="transaction-set-identifier" namespace="http://edi4ml/edi/999#">
         <xsl:value-of select="$segment/ex:fields/ex:field[./@ex:index=1]"/>
@@ -221,7 +221,7 @@
             </xsl:call-template>
       </xsl:for-each>
       <xsl:for-each select="key('segment-identifier', 'IK5')[./@ex:index/number(.) lt number($next-index) and
-          ./@ex:index/number(.) gt number($segment/@index)]">
+          ./@ex:index/number(.) gt number($segment/@ex:index)]">
             <xsl:call-template name="IK5">
               <xsl:with-param name="segment" select="."/>
             </xsl:call-template>
