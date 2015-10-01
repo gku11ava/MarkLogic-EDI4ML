@@ -4,7 +4,7 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:ex="http://edi4ml/edi/xml#">
   <xsl:template match="/">
-    <xsl:element name="implementation-acknowledgement" namespace="http://edi4ml/edi/common#">
+    <xsl:element name="implementation-acknowledgement" namespace="http://edi4ml/edi/999#">
       <xsl:for-each select="/ex:edi-document/ex:interchanges/ex:interchange">
         <xsl:call-template name="interchange">
           <xsl:with-param name="interchange-node" select="."/>

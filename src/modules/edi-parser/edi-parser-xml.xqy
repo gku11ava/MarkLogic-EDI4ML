@@ -124,7 +124,12 @@ declare function epx:segment-to-xml($parent-index as xs:int?, $segment-index as 
             element{xs:QName("ex:segment-identifier")} {$fields[1]},
             let $parsed-fields :=
                 for $field at $i in fn:subsequence($fields, 2)
-                return epx:string-to-xml($i, $field, $epc:TYPE-FIELD, $delimiter-map)
+                return epx:string-to-xml($i, $field, $epc:TYPE-FIELD, 
+                    if($fields[1] = "ISA") then
+                        let $temp-map := epc:build-delimiter-map($delimiter-map)
+                        let $_ := map:delete($temp-map, $epc:KEY-COMPONENT-DELIMITER)
+                        return $temp-map 
+                    else $delimiter-map)
             return element{xs:QName("ex:fields")} {
                 attribute{xs:QName("ex:count")} {fn:count($parsed-fields)},
                 $parsed-fields
@@ -192,7 +197,6 @@ declare function epx:xml-to-edi($xml as element(ex:edi-document)) as text() {
         $xml/ex:delimiters/ex:delimiter[./@ex:type=$epc:KEY-SUBCOMPONENT-DELIMITER]/fn:string(.))
     let $segment-delimiter := map:get($delimiter-map, $epc:KEY-SEGMENT-DELIMITER)
     return text {
-        fn:concat(
             fn:string-join(
                 if($xml/ex:segments) then
                     let $_ := fn:trace("xml to edi -- generic XML encountered", $TRACE-DEBUG)
@@ -204,9 +208,7 @@ declare function epx:xml-to-edi($xml as element(ex:edi-document)) as text() {
                     for $interchange in $xml/ex:interchanges/ex:interchange
                     return epx:interchange-to-edi($interchange, $delimiter-map)
                 else (),
-                $segment-delimiter),
-            $segment-delimiter)
- 
+                $segment-delimiter)
     }    
 };
 
