@@ -515,6 +515,7 @@
 			</xsl:element>
 			<xsl:for-each select="$segment/ex:fields/ex:field[./@ex:index > 1]">
 				<xsl:element name="error-code" namespace="http://edi4ml/edi/999#">
+				  <xsl:attribute name="index" namespace="http://edi4ml/edi/metadata#"><xsl:value-of select="./@ex:index"/></xsl:attribute>
 					<xsl:value-of select="." />
 				</xsl:element>
 			</xsl:for-each>

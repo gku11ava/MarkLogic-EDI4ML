@@ -601,11 +601,17 @@
         <xsl:text>IK5</xsl:text>
       </xsl:element>
       <xsl:element name="fields" namespace="http://edi4ml/edi/xml#">
-        <xsl:attribute name="count" namespace="http://edi4ml/edi/xml#"><xsl:number value="1"/></xsl:attribute>
+        <xsl:attribute name="count" namespace="http://edi4ml/edi/xml#"><xsl:number value="max($trailer/edi999:error-code/@metadata:index)"/></xsl:attribute>
         <xsl:element name="field" namespace="http://edi4ml/edi/xml#">
           <xsl:attribute name="index" namespace="http://edi4ml/edi/xml#"><xsl:number value="1"/></xsl:attribute>
           <xsl:value-of select="$trailer/edi999:transaction-status"/>
         </xsl:element>
+        <xsl:for-each select="$trailer/edi999:error-code">
+          <xsl:element name="field" namespace="http://edi4ml/edi/xml#">
+            <xsl:attribute name="index" namespace="http://edi4ml/edi/xml#"><xsl:value-of select="./@metadata:index"/></xsl:attribute>
+            <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:for-each>
       </xsl:element>
     </xsl:element>
   </xsl:template>
