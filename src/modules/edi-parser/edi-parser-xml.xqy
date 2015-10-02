@@ -197,6 +197,7 @@ declare function epx:xml-to-edi($xml as element(ex:edi-document)) as text() {
         $xml/ex:delimiters/ex:delimiter[./@ex:type=$epc:KEY-SUBCOMPONENT-DELIMITER]/fn:string(.))
     let $segment-delimiter := map:get($delimiter-map, $epc:KEY-SEGMENT-DELIMITER)
     return text {
+        fn:concat(
             fn:string-join(
                 if($xml/ex:segments) then
                     let $_ := fn:trace("xml to edi -- generic XML encountered", $TRACE-DEBUG)
@@ -208,7 +209,7 @@ declare function epx:xml-to-edi($xml as element(ex:edi-document)) as text() {
                     for $interchange in $xml/ex:interchanges/ex:interchange
                     return epx:interchange-to-edi($interchange, $delimiter-map)
                 else (),
-                $segment-delimiter)
+                $segment-delimiter), $segment-delimiter)
     }    
 };
 
