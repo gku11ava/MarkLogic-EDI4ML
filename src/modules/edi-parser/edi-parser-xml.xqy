@@ -121,7 +121,7 @@ declare function epx:segment-to-xml($parent-index as xs:int?, $segment-index as 
             attribute{xs:QName("ex:index")} {$segment-index},
             if($parent-index) then attribute{xs:QName("ex:set-position")} {$segment-index - $parent-index} else (),
             if($epc:DEBUG-MODE) then element{xs:QName("ex:segment-text")} {$segment-text} else (),
-            element{xs:QName("ex:segment-identifier")} {$fields[1]},
+            element{xs:QName("ex:segment-identifier")} {fn:normalize-space($fields[1])},
             let $parsed-fields :=
                 for $field at $i in fn:subsequence($fields, 2)
                 return epx:string-to-xml($i, $field, $epc:TYPE-FIELD, 
